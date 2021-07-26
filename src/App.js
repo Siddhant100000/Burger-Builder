@@ -1,11 +1,16 @@
-import './App.module.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <p>This is a module css Tag !</p>
-    </div>
-  );
+import Layout from './components/Layout/Layout'
+import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
+
+class App extends Component{
+  render(){
+    return (
+      <Layout>
+        <BurgerBuilder/>
+      </Layout>
+    );
+  }
 }
 
 export default App;
