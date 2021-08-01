@@ -5,7 +5,8 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/orderSummary';
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../axios-order';
 
 
 const INGREDIENT_PRICES = {
