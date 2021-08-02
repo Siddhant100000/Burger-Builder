@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import classes from "./Modal.module.css";
-import Auxiliary from "../../hoc/Auxiliary";
+import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import BackDrop from "../Ui/BackDrop/BackDrop";
 
 class Modal extends Component {
@@ -16,7 +16,7 @@ class Modal extends Component {
   render() {
     return (
       <Auxiliary>
-        <BackDrop show={this.props.show} />
+        <BackDrop show={this.props.show} clicked={this.props.modalClosed} />
         <div
           className={classes.Modal}
           style={{
