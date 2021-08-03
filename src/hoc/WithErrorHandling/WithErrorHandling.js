@@ -5,16 +5,16 @@ import Auxiliary from "../Auxiliary/Auxiliary";
 
 const WithErrorHandling = (WrappedCompoenet, axios) => {
   return class extends Component {
-    state = {
-      error: null,
-    };
-
-    componentDidMount() {
-      axios.interceptors.request.use((error) => {
+    constructor(props) {
+      super(props);
+      this.state = {
+        error: null,
+      };
+      this.requestInterceptor = axios.interceptors.request.use((error) => {
         this.setState({ error: null });
         return error;
       });
-      axios.interceptors.response.use(
+      this.responseIntercepto = axios.interceptors.response.use(
         (res) => res,
         (error) => {
           this.setState({ error: error });
@@ -25,6 +25,16 @@ const WithErrorHandling = (WrappedCompoenet, axios) => {
     errorConfirmedHandler = () => {
       this.setState({ error: null });
     };
+
+    componentWillUnmount() {
+      console.log(
+        "Will unmount",
+        this.requestInterceptor,
+        this.responseIntercepto
+      );
+      axios.interceptors.response.eject(this.requestInterceptor);
+      axios.interceptors.request.eject(this.responseIntercepto);
+    }
 
     render() {
       return (
