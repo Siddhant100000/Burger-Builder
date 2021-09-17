@@ -1,40 +1,38 @@
-import React, { Component } from "react";
+import React from "react";
+import Aux from "../../../hoc/Auxiliary/Auxiliary";
+import Button from "../../UI/Button/Button";
 
-import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
-import Button from "../../Ui/Button/Button";
-
-class OrderSummary extends Component {
-  componentDidUpdate() {
-    // console.log("[OrderSummary.js] Update Cycle commenced ");
+class OrderSummary extends React.Component {
+  //This could be a functional component
+  componentWillUpdate() {
+    console.log("[OrderSummary] Willupdate");
   }
 
   render() {
-    const ingredientSummary = Object.keys(this.props.ingredients).map(
-      (igKey) => {
-        return (
-          <li key={igKey}>
-            <span style={{ textTransform: "capitalize" }}>{igKey}</span> :{" "}
-            {this.props.ingredients[igKey]}
-          </li>
-        );
-      }
-    );
+    const ingredientSummary = Object.keys(this.props.ingredients).map(igKey => {
+      return (
+        <li key={igKey}>
+          <span style={{ textTransform: "capitalize" }}>
+            {igKey} : {this.props.ingredients[igKey]}
+          </span>
+        </li>
+      );
+    });
+
     return (
-      <Auxiliary>
+      <Aux>
         <h3>Your Order</h3>
-        <p>A delicious burger with the following ingredients</p>
+        <p>A delicious burger with the following ingredients:</p>
         <ul>{ingredientSummary}</ul>
-        <p>
-          <strong>Total price : {this.props.price.toFixed(2)}</strong>
-        </p>
-        <p>Continue to check out !</p>
-        <Button btnType="Success" clicked={this.props.purchaseCotinue}>
-          Continue
+        <strong>Total Price: ${this.props.price.toFixed(2)}</strong>
+        <p>Continue to Checkout?</p>
+        <Button btnType="Danger" clicked={this.props.purchaseCancelled}>
+          CANCEL
         </Button>
-        <Button btnType="Danger" clicked={this.props.purchaseCanceled}>
-          Cancel
+        <Button btnType="Success" clicked={this.props.purchaseContinued}>
+          CONTINUE
         </Button>
-      </Auxiliary>
+      </Aux>
     );
   }
 }
